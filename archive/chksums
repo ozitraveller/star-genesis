@@ -1,4 +1,0 @@
-#!/bin/sh
-
-md5sum ./xfce/live-image-amd64.hybrid.iso >> MD5SUMS
-# md5sum linux2.iso > MD5SUMS
