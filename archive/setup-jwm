@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -d "jwm" ]; then
+	sudo rm -rf jwm
+fi
+
+sudo mkdir jwm && cd jwm && sudo lb config
+sudo cp /usr/share/doc/live-build/examples/auto/* auto/
+
+cd ..
+
+if [ ! -f "./build" ]; then
+	cp ./buildx ./build
+fi
+sudo mv ./build ./jwm
+sudo chown root:root ./jwm/build
+sudo ./update-jwm

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+echo 'update-fb'
+./update-fb
+
+echo 'update-ob'
+./update-ob
+
+echo 'update-jwm'
+./update-jwm
+
+echo 'update-xfce'
+./update-xfce

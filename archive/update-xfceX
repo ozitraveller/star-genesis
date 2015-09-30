@@ -1,0 +1,118 @@
+#!/bin/sh
+
+_VERSION="2.3"
+
+# clear
+echo "Version ["$_VERSION"]"
+#echo -n "Check version and run? (Y|n) > "
+#read a
+#if [ "$a" = "y" ] || [ "$a" = "Y" ] || \
+#[ "$a" = "" ]; then
+
+_BUILD=""
+
+#function Muzic (){
+# clear
+# echo -e "PMRP - Poor Man's Radio Player"
+# echo ""
+echo "Live-Build :"
+echo ""
+echo "xfce"
+echo "fb"
+echo "ob"
+echo "jwm"
+echo "$Q Quit"
+echo ""
+echo "Select a Category and press [Enter] to list available stations :"
+
+read desktop
+case "$desktop" in
+
+X | x)
+_BUILD="xfce"
+;;
+
+f | F)
+_BUILD="fb"
+;;
+
+o | O)
+_BUILD="ob"
+;;
+
+j | J)
+_BUILD="jwm"
+;;
+
+Q)
+clear
+echo ""
+# echo -e "'When I die, just keep playing the records' $RED Jimi Hendrix $NC"
+#echo ""#
+# sleep 4
+clear
+break
+exit 0
+;;
+
+esac
+#}
+
+#Muzic
+
+echo ${_BUILD}
+#exit 0
+
+cd ${_BUILD}
+rm -rf ./auto/*
+cp -rf /home/simon/star-live-build/common/auto/* ./auto/
+cd config
+
+if [ ! -d "bootloaders" ]; then
+	mkdir bootloaders
+fi
+
+#if [ ! -d "binary_debian-installer" ]; then
+	#mkdir binary_debian-installer
+#fi
+
+rm -rf ./apt/*
+rm -rf ./archives/*
+rm -rf ./hooks/*
+rm -rf ./includes.chroot/*
+rm -rf ./package-lists/*
+rm -rf ./includes.installer/*
+# rm -rf ./binary_debian-installer
+rm -rf ./bootloaders/*
+rm -rf ./includes.binary/*
+
+if [ ! -d "./includes.binary/install" ]; then
+	mkdir ./includes.binary/install
+fi
+
+sed -i -e 's/VERSION/'${_VERSION}'/g' /home/simon/star-live-build/common/config/includes.chroot/etc/hostname
+sed -i -e 's/VERSION/'${_VERSION}'/g' /home/simon/star-live-build/common/config/includes.chroot/etc/issue
+sed -i -e 's/VERSION/'${_VERSION}'/g' /home/simon/star-live-build/common/config/includes.chroot/etc/issue.net
+sed -i -e 's/VERSION/'${_VERSION}'/g' /home/simon/star-live-build/common/config/includes.chroot/etc/motd
+sed -i -e 's/VERSION/'${_VERSION}'/g' /home/simon/star-live-build/common/config/includes.chroot/etc/os-release
+
+cp /home/simon/star-live-build/common/config/apt/* ./apt/
+cp /home/simon/star-live-build/common/config/archives/* ./archives/
+cp -r /home/simon/star-live-build/common/config/bootloaders/* ./bootloaders/
+
+# cp -r /home/simon/star-live-build/xfce-64/config/binary_debian-installer .
+cp -r /home/simon/star-live-build/common/config/includes.installer/* ./includes.installer/
+cp /home/simon/star-live-build/common/config/includes.installer/preseed.cfg ./includes.binary/install
+
+cp -r /home/simon/star-live-build/common/config/hooks/* ./hooks/
+cp -r /home/simon/star-live-build/common/config/includes.chroot/* ./includes.chroot/
+cp /home/simon/star-live-build/common/config/package-lists/* ./package-lists/
+
+cp -r /home/simon/star-live-build/${_BUILD}-64/config/hooks/* ./hooks/
+cp -r /home/simon/star-live-build/${_BUILD}-64/config/includes.chroot/* ./includes.chroot/
+cp /home/simon/star-live-build/${_BUILD}-64/config/package-lists/* ./package-lists/
+
+
+cd ../..
+
+#fi
