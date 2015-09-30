@@ -1,0 +1,79 @@
+#!/bin/sh
+
+
+set -e
+
+# _FLAVOURS="fb jwm ob xfce"
+
+_FLAVOUR=""
+
+#function Muzic (){
+echo ""
+echo "	Live-Build Setup :"
+echo "	"
+echo "	Current build version ["$_VERSION"]"
+echo ""
+echo "	x)fce"
+echo "	f)luxbox"
+echo "	o)penbox"
+echo "	j)wm"
+echo ""
+echo "	Q)uit"
+echo ""
+echo "	Select a desktop and press [Enter] to list available desktops :"
+
+read desktop
+case "$desktop" in
+
+X | x)
+_FLAVOUR="xfce"
+;;
+
+f | F)
+_FLAVOUR="fb"
+;;
+
+o | O)
+_FLAVOUR="ob"
+;;
+
+j | J)
+_FLAVOUR="jwm"
+;;
+
+*)
+clear
+echo ""
+break
+exit 0
+;;
+
+esac
+#}
+
+#Muzic
+
+echo "Updating "${_FLAVOUR}"..."
+
+for _FLAVOUR in ${_FLAVOURS}
+do
+	echo 'setup-${_FLAVOUR}'
+	
+	if [ -d "${_FLAVOUR}" ]; then
+		sudo rm -rf ${_FLAVOUR}
+	fi
+
+	sudo mkdir ${_FLAVOUR} && cd ${_FLAVOUR} && sudo lb config
+	sudo cp /usr/share/doc/live-build/examples/auto/* auto/
+
+	cd ..
+
+	if [ ! -f "./build" ]; then
+		cp ./buildx ./build
+	fi
+	sudo mv ./build ./${_FLAVOUR}
+	sudo chown root:root ./${_FLAVOUR}/build
+	#sudo ./update-fb
+	echo 'setup-${_FLAVOUR} DONE'
+
+done

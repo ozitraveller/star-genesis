@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -e
+# deb http://192.168.0.12:3142/debian stable main contrib non-free
+
+_DISTRIBUTION="wheezy"
+_ARCHITECTURES="amd64"
+_LINUX_FLAVOURS="amd64"
+_ARCHIVE_AREAS="main contrib non-free"
+_SOURCE="false"
+# _MIRROR_BINARY="http://mirror.aarnet.edu.au/debian/"
+_MIRROR_BINARY="http://ftp.us.debian.org/debian/"
+
+# export http_proxy=http://localhost:3142/
+
+lb config noauto \
+	--mode debian \
+	--distribution "${_DISTRIBUTION}" \
+	--debian-installer-distribution "${_DISTRIBUTION}" \
+	--debian-installer live \
+	--architectures "${_ARCHITECTURES}" \
+	--linux-flavours "${_LINUX_FLAVOURS}" \
+	--apt-recommends false \
+	--apt-secure true \
+	--apt-indices false \
+	--apt-source-archives false \
+	--archive-areas "${_ARCHIVE_AREAS}" \
+	--parent-mirror-bootstrap "${_MIRROR_BINARY}" \
+	--parent-mirror-binary "${_MIRROR_BINARY}" \
+	--mirror-bootstrap "${_MIRROR_BINARY}" \
+	--mirror-binary "${_MIRROR_BINARY}" \
+	--iso-application "Star Linux" \
+	--iso-publisher "Star" \
+	--iso-volume "Star Live" \
+	--backports true \
+	--security false \
+    --updates false \
+	--memtest none \
+	--win32-loader false \
+	--debug \
+	--verbose \
+	--bootappend-live "boot=live config file=/preseed.cfg quiet splash autologin nouveau.modeset=0 radeon.modeset=0" \
+"${@}"
+
+
+#preseed=medium 

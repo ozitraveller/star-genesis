@@ -1,0 +1,85 @@
+# This is an automatically generated file.
+# Please see <file:/usr/share/doc/menu/README> for information.
+
+# to use your own menu, copy this to ~/.fluxbox/menu, then edit
+# ~/.fluxbox/init and change the session.menuFile path to ~/.fluxbox/menu
+
+[begin] (Main menu)
+# [separator]	
+	[exec] (Command) {gmrun} <>
+	[exec] (Run Program) {/usr/bin/xfrun4} 
+ 	[exec] (Terminal) {x-terminal-emulator} <>
+	[exec] (File Manager) {x-file-manager} <>
+	[exec] (Web browser) {x-www-browser} <>
+# installer start
+[separator]	
+	[exec] (Install Star) {su-to-root -X -c /usr/sbin/debian-installer-launcher} <>
+# installer end	
+# Automatically generated file. Do not edit (see /usr/share/doc/menu/html/index.html)
+[separator]	
+      [submenu] (Settings) {}
+         [exec] (Display) {/usr/bin/arandr}
+         [exec] (Appearance) {/usr/bin/lxappearance} <>
+         [exec] (Choose Walpaper) {/usr/bin/nitrogen} <>
+#        [exec] (Keyboard Settings) {xfce4-keyboard-settings} <>
+#        [exec] (Settings) {xfce4-settings} <> 	
+#	     [exec] (Notifications) {xfce4-notifyd-config} <> 	
+      [end]
+[separator]	
+
+      [submenu] (Accessories) {}
+         [exec] (Application Finder) {/usr/bin/xfce4-appfinder} <>	
+         [exec] (Archive Manager) {/usr/bin/file-roller} <>	
+#         [exec] (Calculator) {/usr/bin/gcalctool} <>
+         [exec] (Geany) {editor} <>
+         [exec] (Catfish) {catfish} <>
+         [exec] (Thunar File Manager) {x-file-manager} <>		 		 		 
+         [exec] (Terminal) {x-terminal-emulator} <>		 		 		 
+         [exec] (Xarchiver) {xarchiver} <>		 		 		 
+      [end]
+      [submenu] (Graphics) {}
+         [exec] (Mirage) {/usr/bin/mirage} <>
+         [exec] (Screenshot) {xfce4-screenshooter} <>
+      [end]
+      [submenu] (Internet) {}
+#        [exec] (Wicd Network Manager) {su-to-root -X -c /usr/sbin/wicd} <>
+         [exec] (Wicd Network Manager) {wicd-client -n} <>
+#        [exec] (FileZilla) {/usr/bin/filezilla} <>
+         [exec] (Iceweasel) {x-www-browser} <>
+#        [exec] (Transmission)) {transmission-gtk} <>
+      [end]
+      [submenu] (Multimedia) {}
+         [exec] (Audio Mixer) {/usr/bin/xfce4-mixer}
+         [exec] (SMPlayer) {/usr/bin/smplayer}
+#        [exec] (Audacious) {/usr/bin/audacious}
+         [exec] (Xfburn) {/usr/bin/xfburn}
+      [end]
+      [submenu] (Office) {}
+         [exec] (Evince Pdf Viewer) {/usr/bin/evince}
+      [end]
+      [submenu] (System) {}
+		 [exec] (Galternatives Configurator) {gksudo /usr/bin/galternatives} <>
+         [exec] (Htop Task Manager) {xfce4-terminal -x htop}
+         [exec] (Gdebi Package Installer) {gksudo /usr/bin/gdebi-gtk} <>
+         [exec] (Bootup Manager) {gksudo /usr/bin/bum}
+         [exec] (Disk Manager) {gksudo /usr/sbin/disk-manager}
+         [exec] (Gparted) {gksudo /usr/sbin/gparted}
+         [exec] (Root Terminal) {gksudo x-terminal-emulator} <>
+         [exec] (Root File Manager) {gksudo x-file-manager} <>
+         [exec] (System Information) {/usr/bin/hardinfo}
+         [exec] (Synaptic Package Manager) {gksudo /usr/sbin/synaptic} <>         
+      [end]
+      [submenu] (Fluxbox) {Settings} <>
+        [config] (Fluxbox Menu)
+        [reconfig] (Reload Config)
+        [restart] (Restart Fluxbox)
+        [workspaces] (Workspaces)
+        [submenu] (Styles) {}
+        [stylesdir] (/usr/share/fluxbox/styles)
+        [stylesdir] (~/.fluxbox/styles)
+      [end]
+    [end]
+  [separator]
+  [exec] (Exit) {/usr/bin/star-exit} <>   
+
+[end]

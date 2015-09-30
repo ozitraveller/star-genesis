@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+echo STAR-LIVE-Hook: "$0"
+echo ""
+echo "I: Change distro name"
+
+sed -i 's/Debian wheezy/Star/' usr/share/applications/debian-installer-launcher.desktop
+

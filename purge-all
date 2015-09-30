@@ -1,0 +1,31 @@
+#!/bin/sh
+
+clear
+
+echo ""
+echo "fluxbox"
+echo ""
+cd fb
+lb clean --purge
+cd ..
+
+echo ""
+echo "openbox"
+echo ""
+cd ob
+lb clean --purge
+cd ..
+
+echo ""
+echo "jwm"
+echo ""
+cd jwm
+lb clean --purge
+cd ..
+
+echo ""
+echo "xfce"
+echo ""
+cd xfce
+lb clean --purge
+cd ..

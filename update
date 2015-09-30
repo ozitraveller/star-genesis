@@ -1,0 +1,94 @@
+#!/bin/sh
+
+_VERSION="7.9"
+
+clear
+
+_FLAVOUR=""
+
+#function Muzic (){
+echo ""
+echo "	Live-Build :"
+echo "	"
+echo "	Current build version ["$_VERSION"]"
+echo ""
+echo "	x)fce"
+echo "	f)luxbox"
+echo "	o)penbox"
+echo "	j)wm"
+echo ""
+echo "	Q)uit"
+echo ""
+echo "	Select a desktop and press [Enter] to list available desktops :"
+
+read desktop
+case "$desktop" in
+
+X | x)
+_FLAVOUR="xfce"
+;;
+
+f | F)
+_FLAVOUR="fb"
+;;
+
+o | O)
+_FLAVOUR="ob"
+;;
+
+j | J)
+_FLAVOUR="jwm"
+;;
+
+*)
+clear
+echo ""
+break
+exit 0
+;;
+
+esac
+#}
+
+#Muzic
+
+echo "Updating "${_FLAVOUR}"..."
+#exit 0
+
+cd ${_FLAVOUR}
+rm -rf ./auto/*
+cp -rf ~/star-live-build/common/auto/* ./auto/
+cd config
+
+if [ ! -d "bootloaders" ]; then
+	mkdir bootloaders
+fi
+
+rm -rf ./apt/*
+rm -rf ./archives/*
+rm -rf ./hooks/*
+rm -rf ./includes.chroot/*
+rm -rf ./package-lists/*
+rm -rf ./includes.installer/*
+rm -rf ./binary_debian-installer
+rm -rf ./bootloaders/*
+rm -rf ./includes.binary/*
+
+if [ ! -d "./includes.binary/install" ]; then
+	mkdir ./includes.binary/install
+fi
+
+cp -r ~/star-live-build/common/config/* ./
+
+
+cp -r ~/star-live-build/${_FLAVOUR}-64/config/hooks/* ./hooks/
+cp -r ~/star-live-build/${_FLAVOUR}-64/config/includes.chroot/* ./includes.chroot/
+cp ~/star-live-build/${_FLAVOUR}-64/config/package-lists/* ./package-lists/
+
+sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/hostname
+sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/issue
+sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/issue.net
+sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/motd
+sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/os-release
+
+cd ../..

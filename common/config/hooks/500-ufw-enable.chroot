@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+echo STAR-LIVE-Hook: "$0"
+echo ""
+
+echo "I: Enable ufw"
+echo "I: ufw reject incoming"
+
+sed -i 's/IPV6=yes/IPV6=no/' /etc/default/ufw
+ufw enable
+ufw default reject incoming
