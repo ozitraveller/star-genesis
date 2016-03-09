@@ -36,6 +36,9 @@ cpufrequtils
 tzdata
 ntp
 
+i3lock
+dmenu
+
 scrot 
 evince
 smplayer

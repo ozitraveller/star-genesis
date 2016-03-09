@@ -67,9 +67,11 @@ remove(){
 
 setup(){
 	
-	if [ -d "$1" ]; then
-		sudo rm -rf $1
-	fi
+	if prompt "  Remove '$1'?"; then
+		if [ -d "$1" ]; then
+			sudo rm -rf $1
+		fi
+	fi	
 
 	sudo mkdir $1 && cd $1 && sudo lb config
 	sudo cp /usr/share/doc/live-build/examples/auto/* auto/
@@ -90,7 +92,7 @@ update(){
 	#echo $PWD
 		
 	rm -rf ./auto/*
-	cp -rf /home/simon/star-genesis/common/auto/* ./auto/
+	cp -rf /home/$USER/star-genesis/common/auto/* ./auto/
 	cd config
 
 	if [ ! -d "bootloaders" ]; then
@@ -111,11 +113,11 @@ update(){
 		mkdir binary_debian-installer
 	fi
 
-	cp -r /home/simon/star-genesis/common/config/* ./
+	cp -r /home/$USER/star-genesis/common/config/* ./
 
-	cp -r /home/simon/star-genesis/$1-64/config/hooks/* ./hooks/
-	cp -r /home/simon/star-genesis/$1-64/config/includes.chroot/* ./includes.chroot/
-	cp /home/simon/star-genesis/$1-64/config/package-lists/* ./package-lists/
+	cp -r /home/$USER/star-genesis/$1-64/config/hooks/* ./hooks/
+	cp -r /home/$USER/star-genesis/$1-64/config/includes.chroot/* ./includes.chroot/
+	cp /home/$USER/star-genesis/$1-64/config/package-lists/* ./package-lists/
 
 	sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/hostname
 	sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/issue
