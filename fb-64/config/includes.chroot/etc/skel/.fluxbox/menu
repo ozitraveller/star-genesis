@@ -30,7 +30,7 @@
       [submenu] (Accessories) {}
          [exec] (Application Finder) {/usr/bin/xfce4-appfinder} <>	
          [exec] (Archive Manager) {/usr/bin/file-roller} <>	
-#         [exec] (Calculator) {/usr/bin/gcalctool} <>
+         [exec] (Calculator) {/usr/bin/gcalctool} <>
          [exec] (Geany) {editor} <>
          [exec] (Catfish) {catfish} <>
          [exec] (Thunar File Manager) {x-file-manager} <>		 		 		 

@@ -322,7 +322,7 @@
         <command>gmrun</command>
       </action>
     </keybind>
-    <keybind key="A-F3">
+    <keybind key="W-d">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
@@ -376,15 +376,15 @@
         <command>editor</command>
       </action>
     </keybind>
-<!--    <keybind key="W-m">
+    <keybind key="W-m">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>Mediaplayer</name>
         </startupnotify>
-        <command>vlc</command>
+        <command>smplayer</command>
       </action>
-    </keybind> -->
+    </keybind>
     <keybind key="W-x">
       <action name="Execute">
         <startupnotify>
@@ -408,16 +408,16 @@
     <keybind key="W-Up">
       <action name="GrowToEdgeNorth"/>
     </keybind>
-    <keybind key="W-A-Left">
+<!--    <keybind key="W-A-Left">
       <action name="Execute">
-        <command>cb-aerosnap --left</command>
+        <command>cb-aerosnap -=-left</command>
       </action>
     </keybind>
     <keybind key="W-A-Right">
       <action name="Execute">
-        <command>cb-aerosnap --right</command>
+        <command>cb-aerosnap -=-right</command>
       </action>
-    </keybind>
+    </keybind> -->
   </keyboard>
 
   <mouse>

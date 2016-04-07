@@ -50,7 +50,7 @@ mirage
 conky-all 
 file-roller
 xarchiver
-# gcalctool 
+gcalctool 
 # transmission-gtk 
 thunar
 thunar-data

@@ -14,7 +14,7 @@ echo "  -----------------------------[ screen $STEPS of $STEPS ]----------------
   Note: additional packages listed as dependencies may also be installed. "
 
 if prompt "  Whould you like to install packaging tools?"; then
-	sudo apt-get install -y build-essential, debhelper cdbs dh-make diffutils patch gnupg fakeroot lintian devscripts pbuilder dpatch dput quilt
+	sudo apt-get install -y build-essential debhelper cdbs dh-make diffutils patch gnupg fakeroot lintian devscripts pbuilder dpatch dput quilt
 	sudo chown $USER:$USER /etc/pbuilderrc
 	sudo echo "MIRRORSITE=http://ftp.de.debian.org/debian" > /etc/pbuilderrc
 	sudo echo "DISTRIBUTION=wheezy" >> /etc/pbuilderrc

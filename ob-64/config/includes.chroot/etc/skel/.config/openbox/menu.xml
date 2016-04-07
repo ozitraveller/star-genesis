@@ -107,13 +107,13 @@
 					</command>
 				</action>
 			</item>
-<!--			<item label="Calculator">
+			<item label="Calculator">
 				<action name="Execute">
 					<command>
 						/usr/bin/gcalctool
 					</command>
 				</action>
-			</item> -->
+			</item>
 		    <item label="Catfish">
 				<action name="Execute">
 					<command>
