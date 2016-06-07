@@ -4,7 +4,7 @@ set -e
 
 RED='\033[0;41;30m'
 STD='\033[0;0;39m'
-_VERSION="8.2"
+_VERSION="7.11"
  
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
@@ -54,15 +54,38 @@ build(){
 	#pause
 }
 
-remove(){
+removeprompt(){
+
 	if prompt "  Remove '$1'?"; then
-		if [ -d "$1" ]; then
-			sudo rm -rf $1
-		fi
+		remove $1
 	fi	
-	
-	# uncomment pause to see messages
-	#pause
+
+}
+
+remove(){
+
+ 	if [ -d "$1" ]; then
+		purge $1
+		sudo rm -rf $1
+	fi
+
+}
+
+purgeprompt(){
+
+	if prompt "  Purge '$1'?"; then
+		purge $1
+	fi
+}
+
+purge(){
+
+	if [ -d "$1" ]; then
+		cd $1
+		sudo lb clean --purge
+		cd ..
+	fi
+
 }
 
 setup(){
@@ -92,7 +115,7 @@ update(){
 	#echo $PWD
 		
 	rm -rf ./auto/*
-	cp -rf /home/$USER/star-genesis/common/auto/* ./auto/
+	cp -rf /home/$SUDO_USER/star-genesis/common/auto/* ./auto/
 	cd config
 
 	if [ ! -d "bootloaders" ]; then
@@ -113,11 +136,11 @@ update(){
 		mkdir binary_debian-installer
 	fi
 
-	cp -r /home/$USER/star-genesis/common/config/* ./
+	cp -r /home/$SUDO_USER/star-genesis/common/config/* ./
 
-	cp -r /home/$USER/star-genesis/$1-64/config/hooks/* ./hooks/
-	cp -r /home/$USER/star-genesis/$1-64/config/includes.chroot/* ./includes.chroot/
-	cp /home/$USER/star-genesis/$1-64/config/package-lists/* ./package-lists/
+	cp -r /home/$SUDO_USER/star-genesis/$1-64/config/hooks/* ./hooks/
+	cp -r /home/$SUDO_USER/star-genesis/$1-64/config/includes.chroot/* ./includes.chroot/
+	cp /home/$SUDO_USER/star-genesis/$1-64/config/package-lists/* ./package-lists/
 
 	sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/hostname
 	sed -i -e 's/VERSION/'${_VERSION}'/g' ./includes.chroot/etc/issue
@@ -144,6 +167,7 @@ main(){
 	echo -e "\tr. Remove        f. Fluxbox"
 	echo -e "\tu. Update        o. Openbox"
 	echo -e "\tb. Build"
+	echo -e "\tp. Purge"	
 	echo " "
 	echo -e "\tExample - sx Setup Xfce"
 	echo " "
@@ -151,21 +175,24 @@ main(){
 	echo " "
 		
 	local choice
-	read -p "Enter choice [ 1 - 6] or q : " choice
+	read -p "Enter choice or q : " choice
 
 	case $choice in
 		sx) setup "xfce" ;;
 		sf) setup "fb" ;;
 		so) setup "ob" ;;
-		rx) remove "xfce" ;;
-		rf) remove "fb" ;;
-		ro) remove "ob" ;;
+		rx) removeprompt "xfce" ;;
+		rf) removeprompt "fb" ;;
+		ro) removeprompt "ob" ;;
 		ux) update "xfce" ${_VERSION} ;;
 		uf) update "fb" ${_VERSION} ;;
 		uo) update "ob" ${_VERSION} ;;
 		bx) build "xfce" ;;
 		bf) build "fb" ;;
 		bo) build "ob" ;;
+		px) purgeprompt "xfce" ;;
+		pf) purgeprompt "fb" ;;
+		po) purgeprompt "ob" ;;		
 		q|Q) break;;
 		*) echo -e "\tinvalid answer, please try again" ;;
 	esac
